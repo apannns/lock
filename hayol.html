@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANDROID SECURITY</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:#00ff00;
+    font-family:monospace;
+    overflow:hidden;
+}
+
+.lock{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
+
+h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+p{
+    font-size:18px;
+}
+
+input{
+    margin-top:20px;
+    width:250px;
+    padding:12px;
+    background:black;
+    border:2px solid #00ff00;
+    color:#00ff00;
+    font-size:22px;
+    text-align:center;
+    outline:none;
+    letter-spacing:5px;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 25px;
+    background:#00ff00;
+    color:black;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+}
+
+#msg{
+    margin-top:20px;
+    font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lock">
+    <h1>DEVICE LOCKED</h1>
+
+    <p>
+        Unauthorized access detected.<br>
+        Enter recovery key.
+    </p>
+
+    <input type="password" id="key" placeholder="████████">
+
+    <button onclick="checkKey()">UNLOCK</button>
+
+    <div id="msg"></div>
+</div>
+
+<script>
+function checkKey(){
+    const key = document.getElementById("key").value;
+    const msg = document.getElementById("msg");
+
+    if(key === "1234"){
+        msg.style.color = "lime";
+        msg.innerHTML = "ACCESS GRANTED";
+
+        setTimeout(() => {
+            window.close();
+
+            // fallback kalau browser blok close
+            window.location.href = "about:blank";
+        }, 1000);
+
+    } else {
+        msg.style.color = "red";
+        msg.innerHTML = "INVALID KEY";
+    }
+}
+</script>
+
+</body>
+</html>
